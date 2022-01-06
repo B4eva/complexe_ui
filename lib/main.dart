@@ -1,4 +1,5 @@
 import 'package:complexe_ui/custom_drawer/custom_drawer.dart';
+import 'package:complexe_ui/flight_controller/flight_controller.dart';
 
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CustomDrawer(),
+      home: const FlightsStepper(),
     );
   }
 }

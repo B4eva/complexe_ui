@@ -2,6 +2,8 @@ import 'package:complexe_ui/Widgets/counter.dart';
 import 'package:complexe_ui/Widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
+import 'dart:math' as math;
+
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
 
@@ -43,13 +45,24 @@ class _CustomDrawerState extends State<CustomDrawer>
           //     'this is animation Controller value ${animationController!.value}');
           return Stack(
             children: <Widget>[
-              const MyDrawer(),
-              Transform(
-                  transform: Matrix4.identity()
-                    ..translate(slide)
-                    ..scale(scale),
-                  alignment: Alignment.centerLeft,
-                  child: const CounterWidget())
+              Transform.translate(
+                offset: Offset(maxSlide * (animationController!.value - 1), 0),
+                child: Transform(
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.001)
+                      ..rotateY(math.pi / 1 * (1 - animationController!.value)),
+                    alignment: Alignment.centerRight,
+                    child: const MyDrawer()),
+              ),
+              Transform.translate(
+                offset: Offset(maxSlide * animationController!.value, 0),
+                child: Transform(
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.001)
+                      ..rotateY(-math.pi / 2 * animationController!.value),
+                    alignment: Alignment.centerLeft,
+                    child: const CounterWidget()),
+              )
             ],
           );
         },
@@ -59,7 +72,7 @@ class _CustomDrawerState extends State<CustomDrawer>
 
   void _onDragStart(DragStartDetails details) {
     bool isDragOpenFromLeft = animationController!.isDismissed &&
-        details.globalPosition.dx < 0; // check this
+        details.globalPosition.dy < 0; // check this
     bool isDragCloseFromRight = animationController!.isCompleted &&
         details.globalPosition.dx > 0; // check this
 
