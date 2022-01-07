@@ -1,5 +1,5 @@
-import 'package:complexe_ui/custom_drawer/custom_drawer.dart';
-import 'package:complexe_ui/flight_controller/flight_controller.dart';
+import 'package:complexe_ui/Sigin_screen/sigin_screen.dart';
+import 'package:complexe_ui/login_screen/login_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const FlightsStepper(),
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/signin': (context) => const SignInSCreen()
+      },
     );
   }
 }
