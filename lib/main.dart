@@ -2,6 +2,7 @@ import 'package:complexe_ui/Sigin_screen/sigin_screen.dart';
 import 'package:complexe_ui/login_screen/login_screen.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,11 +19,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login',
-      routes: {
-        '/login': (context) => const LoginScreen(),
-        '/signin': (context) => const SignInSCreen()
-      },
+      home: const SignInSCreen(),
+      // initialRoute: '/signin',
+      // routes: {
+      //   '/login': (context) => const LoginScreen(),
+      //   '/signin': (context) => const SignInSCreen()
+      // },
     );
   }
 }

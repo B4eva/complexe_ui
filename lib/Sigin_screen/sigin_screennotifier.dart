@@ -32,9 +32,7 @@ class SignInScreenNotifier extends ChangeNotifier {
   TextEditingController? _passWordEditingController;
   get passwordEditingController => _passWordEditingController;
 
-  navigateTo(BuildContext context) {
-    Navigator.pushNamed(context, '/login');
-
+  navigateTo(context) {
     notifyListeners();
   }
 }

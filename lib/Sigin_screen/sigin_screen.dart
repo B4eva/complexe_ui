@@ -75,7 +75,10 @@ class SignInSCreen extends StatelessWidget {
                     BottomText(
                         text1: provider.haveAccountText,
                         text2: provider.loginText,
-                        press: provider.navigateTo(context))
+                        press: () {}),
+                    const SizedBox(
+                      height: 30,
+                    ),
                   ],
                 );
               }),

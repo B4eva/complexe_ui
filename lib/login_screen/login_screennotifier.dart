@@ -22,10 +22,7 @@ class LoginViewNotifier extends ChangeNotifier {
   TextEditingController? _passWordEditingController;
   get passwordEditingController => _passWordEditingController;
 
-  navigateTo(BuildContext context) {
-    Navigator.pop(context, '/signin');
-    Navigator.pushNamed(context, '/signin');
-
+  navigateTo(context) {
     print('Username:\n passWord:');
     notifyListeners();
   }
