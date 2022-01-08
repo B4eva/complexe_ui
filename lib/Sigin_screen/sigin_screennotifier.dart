@@ -5,7 +5,32 @@ import 'package:flutter/cupertino.dart';
 // state is managed by changeNotifier
 
 class SignInScreenNotifier extends ChangeNotifier {
-  final String _emailHint = 'Password';
+  GlobalKey<FormFieldState>? formKey;
+
+  String? _userName;
+  String? get userName => _userName;
+
+  set userName(name) {
+    _userName = name;
+    notifyListeners();
+  }
+
+  String? _email;
+  String? get email => _email;
+  set email(mail) {
+    _email = mail;
+    notifyListeners();
+  }
+
+  String? _passWord;
+  String? get passWord => _passWord;
+  set passWord(pass) {
+    _passWord = pass;
+
+    notifyListeners();
+  }
+
+  final String _emailHint = 'Email';
   String get emailHint => _emailHint;
 
   final String _passwordHint = 'Password';
@@ -33,6 +58,7 @@ class SignInScreenNotifier extends ChangeNotifier {
   get passwordEditingController => _passWordEditingController;
 
   navigateTo(context) {
+    Navigator.pushReplacementNamed(context, '/login');
     notifyListeners();
   }
 }

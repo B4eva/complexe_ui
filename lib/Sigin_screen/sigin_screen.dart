@@ -4,6 +4,7 @@ import 'package:complexe_ui/creative_widgets/creative_button.dart';
 import 'package:complexe_ui/creative_widgets/creative_circles.dart';
 import 'package:complexe_ui/creative_widgets/login_textfield.dart';
 import 'package:complexe_ui/creative_widgets/welcome_text.dart';
+import 'package:complexe_ui/utitlities/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +13,7 @@ class SignInSCreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+    return ChangeNotifierProvider<SignInScreenNotifier>(
       create: (context) => SignInScreenNotifier(),
       child: Builder(
         builder: (context) {
@@ -36,7 +37,7 @@ class SignInSCreen extends StatelessWidget {
                               // topRight: Radius.circular(180),
                               // topLeft: Radius.circular(180),
                               // bottomLeft: Radius.circular(180),
-                              bottomRight: Radius.circular(200),
+                              bottomRight: Radius.circular(250),
                             )),
                         child: const Center(
                           child: WelcomeText(
@@ -47,23 +48,37 @@ class SignInSCreen extends StatelessWidget {
                     ),
                     const Align(
                         alignment: Alignment(0.5, -0.5),
-                        child: SmallCircle(color: Color(0xFF384529))),
+                        child: SmallCircle(
+                            height: 40, width: 40, color: Color(0xFF384529))),
                     const SizedBox(
                       height: 20,
                     ),
                     LoginTextField(
-                        textEditingController: provider.emailEditingController,
-                        hintText: provider.emailHint,
-                        icon: Icons.mail_outline_rounded),
+                      formKey: provider.formKey,
+                      save: (value) => provider.userName = value, // tobe done
+                      validate: validateUserName, // tobe done
+                      textEditingController: provider.userNameEditingController,
+                      hintText: provider.userNameHint,
+                      icon: Icons.person,
+                      hideText: false,
+                    ),
                     LoginTextField(
-                        textEditingController:
-                            provider.userNameEditingController,
-                        hintText: provider.userNameHint,
-                        icon: Icons.person),
+                      formKey: provider.formKey,
+                      save: (value) => provider.email = value, // tobe done
+                      validate: validateEmail,
+                      textEditingController: provider.emailEditingController,
+                      hintText: provider.emailHint,
+                      icon: Icons.mail_outline_rounded,
+                      hideText: false,
+                    ),
                     LoginTextField(
+                        formKey: provider.formKey,
+                        save: (value) => provider.passWord = value, // tobe done
+                        validate: validatePassWord, // tobe done
                         textEditingController:
                             provider.passwordEditingController,
                         hintText: provider.passwordHint,
+                        hideText: true,
                         icon: Icons.lock),
                     const SizedBox(
                       height: 30,
@@ -75,7 +90,9 @@ class SignInSCreen extends StatelessWidget {
                     BottomText(
                         text1: provider.haveAccountText,
                         text2: provider.loginText,
-                        press: () {}),
+                        press: () async {
+                          await provider.navigateTo(context);
+                        }),
                     const SizedBox(
                       height: 30,
                     ),

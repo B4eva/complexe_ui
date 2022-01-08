@@ -4,6 +4,7 @@ import 'package:complexe_ui/creative_widgets/creative_circles.dart';
 import 'package:complexe_ui/creative_widgets/login_textfield.dart';
 import 'package:complexe_ui/creative_widgets/welcome_text.dart';
 import 'package:complexe_ui/login_screen/login_screennotifier.dart';
+import 'package:complexe_ui/utitlities/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -39,41 +40,49 @@ class LoginScreen extends StatelessWidget {
                       ),
                       const Align(
                         alignment: Alignment(0.8, -1.0),
-                        child: SmallCircle(color: Color(0xFF384529)),
+                        child: SmallCircle(
+                            height: 40, width: 40, color: Color(0xFF384529)),
                       ),
                       const Align(
                         alignment: Alignment(0.4, 0),
                         child: SmallCircle(
+                          height: 40,
+                          width: 40,
                           color: Color(0xFF008827),
                         ),
                       ),
                       LoginTextField(
+                        key: provider.formKey,
+                        save: (value) => provider.userName = value, // tobe done
+                        validate: validateUserName,
                         textEditingController:
                             provider.userNameEditingController,
                         hintText: provider.userNameHint,
                         icon: Icons.people,
+                        hideText: false,
                       ),
                       LoginTextField(
+                        key: provider.formKey,
+                        save: (value) => provider.passWord = value,
+                        validate: validatePassWord,
                         textEditingController:
                             provider.passwordEditingController,
                         hintText: provider.passwordHint,
                         icon: Icons.lock,
+                        hideText: true,
                       ),
                       const SizedBox(
                         height: 40,
                       ),
-                      CreativeButton(
-                        text: provider.loginText,
-                        press: () {},
-                      ),
+                      CreativeButton(text: provider.loginText, press: () {}),
                       const SizedBox(
                         height: 40,
                       ),
                       BottomText(
                         text1: provider.dontHaveAccountText,
                         text2: provider.signInText,
-                        press: () {
-                          provider.navigateTo(context);
+                        press: () async {
+                          await provider.navigateTo(context);
                         },
                       ),
                       const SizedBox(
