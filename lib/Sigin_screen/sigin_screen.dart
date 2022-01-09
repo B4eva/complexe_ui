@@ -2,7 +2,7 @@ import 'package:complexe_ui/Sigin_screen/sigin_screennotifier.dart';
 import 'package:complexe_ui/creative_widgets/bottom_text.dart';
 import 'package:complexe_ui/creative_widgets/creative_button.dart';
 import 'package:complexe_ui/creative_widgets/creative_circles.dart';
-import 'package:complexe_ui/creative_widgets/login_textfield.dart';
+import 'package:complexe_ui/creative_widgets/text_field.dart';
 import 'package:complexe_ui/creative_widgets/welcome_text.dart';
 import 'package:complexe_ui/utitlities/validator.dart';
 import 'package:flutter/material.dart';
@@ -54,27 +54,27 @@ class SignInSCreen extends StatelessWidget {
                       height: 20,
                     ),
                     LoginTextField(
-                      formKey: provider.formKey,
-                      save: (value) => provider.userName = value, // tobe done
-                      validate: validateUserName, // tobe done
+                      // formKey: provider.formKey,
+                      // save: (value) => provider.userName = value, // tobe done
+                      validate: context.validateUserName, // tobe done
                       textEditingController: provider.userNameEditingController,
                       hintText: provider.userNameHint,
                       icon: Icons.person,
                       hideText: false,
                     ),
                     LoginTextField(
-                      formKey: provider.formKey,
-                      save: (value) => provider.email = value, // tobe done
-                      validate: validateEmail,
+                      // formKey: provider.formKey,
+                      // save: (value) => provider.email = value, // tobe done
+                      validate: context.validateMail,
                       textEditingController: provider.emailEditingController,
                       hintText: provider.emailHint,
                       icon: Icons.mail_outline_rounded,
                       hideText: false,
                     ),
                     LoginTextField(
-                        formKey: provider.formKey,
-                        save: (value) => provider.passWord = value, // tobe done
-                        validate: validatePassWord, // tobe done
+                        // formKey: provider.formKey,
+                        // save: (value) => provider.passWord = value, // tobe done
+                        validate: context.validatePassWord, // tobe done
                         textEditingController:
                             provider.passwordEditingController,
                         hintText: provider.passwordHint,
@@ -83,7 +83,11 @@ class SignInSCreen extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    CreativeButton(text: provider.signInText, press: () {}),
+                    CreativeButton(
+                        text: provider.signInText,
+                        press: () {
+                          provider.navigateToDashboard(context);
+                        }),
                     const SizedBox(
                       height: 30,
                     ),
@@ -91,7 +95,7 @@ class SignInSCreen extends StatelessWidget {
                         text1: provider.haveAccountText,
                         text2: provider.loginText,
                         press: () async {
-                          await provider.navigateTo(context);
+                          await provider.navigateToLogin(context);
                         }),
                     const SizedBox(
                       height: 30,

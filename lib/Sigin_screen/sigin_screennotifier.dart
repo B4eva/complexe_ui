@@ -57,8 +57,16 @@ class SignInScreenNotifier extends ChangeNotifier {
   TextEditingController? _passWordEditingController;
   get passwordEditingController => _passWordEditingController;
 
-  navigateTo(context) {
-    Navigator.pushReplacementNamed(context, '/login');
+  navigateToLogin(context) {
+    Navigator.pushReplacementNamed(context, '/');
     notifyListeners();
+  }
+
+  navigateToDashboard(context) {
+    if (formKey!.currentState!.validate()) {
+      print('Validated');
+    } else {
+      print('not validated');
+    }
   }
 }

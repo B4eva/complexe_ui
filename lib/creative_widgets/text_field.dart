@@ -5,9 +5,9 @@ class LoginTextField extends StatelessWidget {
   final String? hintText;
   final IconData? icon;
   final FormFieldValidator<String>? validate;
-  final Function(String?) save;
+  // final Function(String?) save;
   final bool? hideText;
-  final GlobalKey<FormFieldState>? formKey;
+  // final GlobalKey<FormFieldState>? formKey;
 
   const LoginTextField({
     Key? key,
@@ -15,9 +15,9 @@ class LoginTextField extends StatelessWidget {
     required this.icon,
     this.textEditingController,
     required this.validate,
-    required this.save,
+    // required this.save,
     required this.hideText,
-    this.formKey,
+    // this.formKey,
   }) : super(key: key);
 
   @override
@@ -27,12 +27,14 @@ class LoginTextField extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
-              key: formKey,
-              onSaved: save,
+              autovalidate: true,
+              // onSaved: save,
               validator: validate,
               controller: textEditingController,
               obscureText: hideText!,
               decoration: InputDecoration(
+                  contentPadding:
+                      const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                   border: InputBorder.none,
                   enabled: true,
                   prefixIcon: Icon(

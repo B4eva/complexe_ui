@@ -6,21 +6,15 @@ class LoginViewNotifier extends ChangeNotifier {
   String? _userName;
   String? get userName => _userName;
 
-  set userName(name) {
+  void setName(name) {
     _userName = name;
     notifyListeners();
   }
 
-  // String? _email;
-  // String? get email => _email;
-  // set email(mail) {
-  //   _email = mail;
-  //   notifyListeners();
-  // }
-
   String? _passWord;
   String? get passWord => _passWord;
-  set passWord(pass) {
+
+  void setPassWord(pass) {
     _passWord = pass;
 
     notifyListeners();
@@ -47,11 +41,24 @@ class LoginViewNotifier extends ChangeNotifier {
   final String _dontHaveAccountText = "Don't have an Account? ";
   String get dontHaveAccountText => _dontHaveAccountText;
 
-  navigateTo(context) {
+  navigateToSignIn(context) {
     Navigator.pushNamed(context, '/signIn');
     // print(
     //     'Username: ${_userNameEditingController!.value} \n passWord:${_passWordEditingController!.value}');
     notifyListeners();
+  }
+
+  navigateToDashboard(context) {
+    if (formKey!.currentState!.validate()) {
+      print('Validated');
+    } else {
+      print('not validated');
+    }
+    Navigator.pushNamed(context, '/dashboard');
+  }
+
+  Future<void> login({required String name, required String password}) async {
+    navigateToDashboard;
   }
 
   // doLogin(context) {
