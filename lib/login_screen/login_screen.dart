@@ -57,7 +57,8 @@ class LoginScreen extends StatelessWidget {
                         ),
                         LoginTextField(
                           // key: provider.formKey,
-                          // save: provider.setName, // tobe done
+                          save: (value) =>
+                              provider.setName = value, // tobe done
                           validate: context.validateUserName,
                           textEditingController: userNameEdit,
                           hintText: provider.userNameHint,
@@ -66,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         LoginTextField(
                           // key: provider.formKey,
-                          // save: provider.setPassWord,
+                          save: (value) => provider.setPassword = value,
                           validate: context.validatePassWord,
                           textEditingController: passWordEdit,
                           hintText: provider.passwordHint,

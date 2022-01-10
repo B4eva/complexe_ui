@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoginViewNotifier extends ChangeNotifier {
-  GlobalKey<FormFieldState>? formKey;
+  GlobalKey<FormState>? formKey;
   String? _userName;
   String? get userName => _userName;
 
-  void setName(name) {
+  set setName(String? name) {
     _userName = name;
     notifyListeners();
   }
@@ -14,17 +14,17 @@ class LoginViewNotifier extends ChangeNotifier {
   String? _passWord;
   String? get passWord => _passWord;
 
-  void setPassWord(pass) {
+  set setPassword(String? pass) {
     _passWord = pass;
 
     notifyListeners();
   }
 
-  TextEditingController? _userNameEditingController;
-  get userNameEditingController => _userNameEditingController;
+  // TextEditingController? _userNameEditingController;
+  // get userNameEditingController => _userNameEditingController;
 
-  TextEditingController? _passWordEditingController;
-  get passwordEditingController => _passWordEditingController;
+  // TextEditingController? _passWordEditingController;
+  // get passwordEditingController => _passWordEditingController;
 
   final String _passwordHint = 'Password';
   String get passwordHint => _passwordHint;
@@ -42,7 +42,7 @@ class LoginViewNotifier extends ChangeNotifier {
   String get dontHaveAccountText => _dontHaveAccountText;
 
   navigateToSignIn(context) {
-    Navigator.pushNamed(context, '/signIn');
+    Navigator.pushReplacementNamed(context, '/signIn');
     // print(
     //     'Username: ${_userNameEditingController!.value} \n passWord:${_passWordEditingController!.value}');
     notifyListeners();
@@ -50,11 +50,10 @@ class LoginViewNotifier extends ChangeNotifier {
 
   navigateToDashboard(context) {
     if (formKey!.currentState!.validate()) {
-      print('Validated');
+      Navigator.pushReplacementNamed(context, '/dashboard');
     } else {
       print('not validated');
     }
-    Navigator.pushNamed(context, '/dashboard');
   }
 
   Future<void> login({required String name, required String password}) async {

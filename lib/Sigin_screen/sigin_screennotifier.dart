@@ -1,30 +1,31 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 // provider state with changeNotifier
 //provider only providers the valriabl;es as you can see
 // state is managed by changeNotifier
 
 class SignInScreenNotifier extends ChangeNotifier {
-  GlobalKey<FormFieldState>? formKey;
+  GlobalKey<FormState>? formKey;
 
   String? _userName;
   String? get userName => _userName;
 
-  set userName(name) {
+  set setUserName(String? name) {
     _userName = name;
     notifyListeners();
   }
 
   String? _email;
   String? get email => _email;
-  set email(mail) {
+  set setEmail(String? mail) {
     _email = mail;
     notifyListeners();
   }
 
   String? _passWord;
   String? get passWord => _passWord;
-  set passWord(pass) {
+  set passWord(String? pass) {
     _passWord = pass;
 
     notifyListeners();
@@ -63,10 +64,21 @@ class SignInScreenNotifier extends ChangeNotifier {
   }
 
   navigateToDashboard(context) {
-    if (formKey!.currentState!.validate()) {
-      print('Validated');
+    final form = formKey!.currentState;
+    if (form!.validate()) {
+      form.save();
+      Navigator.pushReplacementNamed(context, '/dashboard');
     } else {
-      print('not validated');
+      Scaffold.of(context).showBottomSheet(
+        (context) => const Text(
+          'Snack',
+        ),
+      );
     }
+  }
+
+  Future<void> signIn(
+      {required String name, required String password, String? email}) async {
+    navigateToDashboard;
   }
 }

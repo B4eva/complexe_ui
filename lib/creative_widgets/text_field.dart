@@ -5,7 +5,7 @@ class LoginTextField extends StatelessWidget {
   final String? hintText;
   final IconData? icon;
   final FormFieldValidator<String>? validate;
-  // final Function(String?) save;
+  final Function(String?) save;
   final bool? hideText;
   // final GlobalKey<FormFieldState>? formKey;
 
@@ -15,7 +15,7 @@ class LoginTextField extends StatelessWidget {
     required this.icon,
     this.textEditingController,
     required this.validate,
-    // required this.save,
+    required this.save,
     required this.hideText,
     // this.formKey,
   }) : super(key: key);
@@ -27,8 +27,8 @@ class LoginTextField extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
-              autovalidate: true,
-              // onSaved: save,
+              // autovalidate: true,
+              onSaved: save,
               validator: validate,
               controller: textEditingController,
               obscureText: hideText!,
