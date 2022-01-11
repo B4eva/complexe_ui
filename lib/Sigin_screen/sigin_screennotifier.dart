@@ -71,14 +71,20 @@ class SignInScreenNotifier extends ChangeNotifier {
     } else {
       Scaffold.of(context).showBottomSheet(
         (context) => const Text(
-          'Snack',
+          'Error some where',
         ),
       );
     }
   }
 
   Future<void> signIn(
-      {required String name, required String password, String? email}) async {
+      {required String? name,
+      required String? password,
+      required String? email}) async {
     navigateToDashboard;
+  }
+
+  wantToLogin() {
+    print('ALmost there');
   }
 }

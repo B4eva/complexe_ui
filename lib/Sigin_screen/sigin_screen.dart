@@ -92,7 +92,10 @@ class SignInSCreen extends StatelessWidget {
                       CreativeButton(
                           text: provider.signInText,
                           press: () {
-                            provider.navigateToDashboard(context);
+                            provider.signIn(
+                                name: userNameEditingController?.text,
+                                password: passWordEditingController?.text,
+                                email: emailEditingController?.text);
                           }),
                       const SizedBox(
                         height: 30,

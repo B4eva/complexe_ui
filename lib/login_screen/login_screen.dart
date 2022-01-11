@@ -81,8 +81,8 @@ class LoginScreen extends StatelessWidget {
                             text: provider.loginText,
                             press: () {
                               provider.login(
-                                  name: userNameEdit!.text,
-                                  password: passWordEdit!.text);
+                                  name: userNameEdit?.text,
+                                  password: passWordEdit?.text);
                             }),
                         const SizedBox(
                           height: 40,

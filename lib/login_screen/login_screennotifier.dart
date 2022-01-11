@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class LoginViewNotifier extends ChangeNotifier {
   GlobalKey<FormState>? formKey;
-  String? _userName;
+  String? _userName = '';
   String? get userName => _userName;
 
   set setName(String? name) {
@@ -11,7 +11,7 @@ class LoginViewNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  String? _passWord;
+  String? _passWord = '';
   String? get passWord => _passWord;
 
   set setPassword(String? pass) {
@@ -49,14 +49,16 @@ class LoginViewNotifier extends ChangeNotifier {
   }
 
   navigateToDashboard(context) {
+    print('Perfoming login');
     if (formKey!.currentState!.validate()) {
       Navigator.pushReplacementNamed(context, '/dashboard');
     } else {
       print('not validated');
     }
+    notifyListeners();
   }
 
-  Future<void> login({required String name, required String password}) async {
+  Future<void> login({required String? name, required String? password}) async {
     navigateToDashboard;
   }
 
