@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // provider state with changeNotifier
-//provider only providers the valriabl;es as you can see
+//provider only provides the variables as you can see.
 // state is managed by changeNotifier
 
 class SignInScreenNotifier extends ChangeNotifier {

@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Timer(const Duration(milliseconds: 30), onClose);
+    Timer(const Duration(milliseconds: 90), onClose);
   }
 
   @override

@@ -60,21 +60,21 @@ class SignInSCreen extends StatelessWidget {
                       ),
                       LoginTextField(
                         // formKey: provider.formKey,
+                        save: (value) => provider.setEmail = value, // tobe done
+                        validate: context.validateMail,
+                        textEditingController: emailEditingController,
+                        hintText: provider.emailHint,
+                        icon: Icons.mail_outline_rounded,
+                        hideText: false,
+                      ),
+                      LoginTextField(
+                        // formKey: provider.formKey,
                         save: (value) =>
                             provider.setUserName = value, // tobe done
                         validate: context.validateUserName, // tobe done
                         textEditingController: userNameEditingController,
                         hintText: provider.userNameHint,
                         icon: Icons.person,
-                        hideText: false,
-                      ),
-                      LoginTextField(
-                        // formKey: provider.formKey,
-                        save: (value) => provider.setEmail = value, // tobe done
-                        validate: context.validateMail,
-                        textEditingController: emailEditingController,
-                        hintText: provider.emailHint,
-                        icon: Icons.mail_outline_rounded,
                         hideText: false,
                       ),
                       LoginTextField(

@@ -33,6 +33,9 @@ class LoginTextField extends StatelessWidget {
               controller: textEditingController,
               obscureText: hideText!,
               decoration: InputDecoration(
+                  hintStyle: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                   contentPadding:
                       const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                   border: InputBorder.none,
